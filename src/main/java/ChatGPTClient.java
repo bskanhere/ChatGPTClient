@@ -9,7 +9,7 @@ import java.io.IOException;
 public class ChatGPTClient {
 
     public static String getChatGPTResponse(String prompt) throws IOException {
-        String apiKey = "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";
+        String apiKey = "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";
 
         String model = "text-davinci-002";
         OpenAiService service = new OpenAiService(apiKey);
