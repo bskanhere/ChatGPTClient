@@ -1,17 +1,16 @@
 
 
 import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.completion.CompletionResult;
 import com.theokanning.openai.service.OpenAiService;
 
 import java.io.IOException;
 
 public class ChatGPTClient {
 
-    public static void main(String[] args) throws IOException {
-        String endpoint = "https://api.openai.com/v1/completions";
-        String apiKey = "your-api-key";
+    public static String getChatGPTResponse(String prompt) throws IOException {
+        String apiKey = "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";
 
-        String prompt = "Write java class file to find fibonacci number";
         String model = "text-davinci-002";
         OpenAiService service = new OpenAiService(apiKey);
         CompletionRequest completionRequest = CompletionRequest.builder()
@@ -20,6 +19,8 @@ public class ChatGPTClient {
                 .maxTokens(2049)
                 .echo(true)
                 .build();
-        service.createCompletion(completionRequest).getChoices().forEach(System.out::println);
+        CompletionResult result = service.createCompletion(completionRequest);
+        result.getChoices().forEach(System.out::println);
+        return result.getChoices().get(0).getText();
     }
 }

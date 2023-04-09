@@ -30,11 +30,11 @@ public class FileReaderWriter {
 
                 // Read from the input file and write to the output file
                 String line;
+                StringBuilder question = new StringBuilder();
                 while ((line = reader.readLine()) != null) {
-                    writer.write(line);
-                    writer.newLine();
+                    question.append(line).append("\n");
                 }
-
+                writer.write(ChatGPTClient.getChatGPTResponse(question.toString()));
                 // Close the reader and writer
                 reader.close();
                 writer.close();
