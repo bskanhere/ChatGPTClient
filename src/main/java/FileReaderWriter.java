@@ -5,39 +5,44 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FileReaderWriter {
 
     public static void main(String[] args) {
 
         // Define the file paths
-        String inputFilePath = "input.txt";
-        String outputFilePath = "output.txt";
+        String inputFolderPath = "input/";
+        String outputFolderPath = "output/";
 
         try {
             // Open the input file and create a BufferedReader
-            File inputFile = new File(inputFilePath);
-            //Arrays.stream(inputFile.listFiles()).map(File::getAbsolutePath).forEach(System.out::println);
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            File inputFolder = new File(inputFolderPath);
+            List<String> files = Arrays.stream(inputFolder.listFiles()).map(File::getName).collect(Collectors.toList());
+            for (String inputFile : files) {
+                BufferedReader reader = new BufferedReader(new FileReader(inputFolderPath + inputFile));
 
-            // Open the output file and create a BufferedWriter
-            File outputFile = new File(outputFilePath);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+                // Open the output file and create a BufferedWriter
+                File outputFile = new File(outputFolderPath + inputFile);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 
-            // Read from the input file and write to the output file
-            String line;
-            while ((line = reader.readLine()) != null) {
-                writer.write(line);
-                writer.newLine();
+                // Read from the input file and write to the output file
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+
+                // Close the reader and writer
+                reader.close();
+                writer.close();
             }
 
-            // Close the reader and writer
-            reader.close();
-            writer.close();
+            System.out.println("Files read and write completed successfully.");
 
-            System.out.println("File read and write completed successfully.");
-
-        } catch (IOException e) {
+        } catch(IOException e){
             e.printStackTrace();
         }
     }
