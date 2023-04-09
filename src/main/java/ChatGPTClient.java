@@ -11,7 +11,6 @@ import java.io.IOException;
 public class ChatGPTClient {
 
     public static String getChatGPTResponse(String prompt) throws IOException {
-        //String apiKey = "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";
         String apiKey = null;
         BufferedReader reader = new BufferedReader(new FileReader("apiKey.txt"));
         String line;
