@@ -1,1 +1,1 @@
-Write java code to find fibonacci number
+Write java class to find fibonacci number

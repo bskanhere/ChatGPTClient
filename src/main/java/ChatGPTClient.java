@@ -31,6 +31,7 @@ public class ChatGPTClient {
                 .build();
         CompletionResult result = service.createCompletion(completionRequest);
         result.getChoices().forEach(System.out::println);
-        return result.getChoices().get(0).getText();
+        String answer = result.getChoices().get(0).getText();
+        return answer.substring(answer.indexOf("public class"), answer.lastIndexOf("}"));
     }
 }

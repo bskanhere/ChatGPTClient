@@ -25,7 +25,7 @@ public class FileReaderWriter {
                 BufferedReader reader = new BufferedReader(new FileReader(inputFolderPath + inputFile));
 
                 // Open the output file and create a BufferedWriter
-                File outputFile = new File(outputFolderPath + inputFile);
+                File outputFile = new File(outputFolderPath + inputFile.split("\\.")[0]+".java");
                 BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 
                 // Read from the input file and write to the output file
