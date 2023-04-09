@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileReaderWriter {
 
@@ -16,6 +17,7 @@ public class FileReaderWriter {
         try {
             // Open the input file and create a BufferedReader
             File inputFile = new File(inputFilePath);
+            //Arrays.stream(inputFile.listFiles()).map(File::getAbsolutePath).forEach(System.out::println);
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
             // Open the output file and create a BufferedWriter
